@@ -29,6 +29,9 @@
 .container.justify-center {
     justify-content: center;
 }
+.container.justify-center.main {
+    min-height: 80vh;
+}
 .container.justify-bottom {
     justify-content: end;
 }
@@ -116,9 +119,6 @@
 }
 .column.justify-space-between {
     justify-content: space-between;
-}
-.container.justify-center.main {
-    min-height: 80vh;
 }
 .gap-10 {
     gap: 10px;
