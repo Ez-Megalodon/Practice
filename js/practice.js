@@ -252,3 +252,25 @@ console.log('Exercise 13:');
 
 // TODO 14: create a string of the first letters of each dog name for dogs three years old (should be "LF")
 console.log('Exercise 14:');
+
+
+//start movie-project merge here for movie-project.js
+let userPatchId = document.querySelector('#patch-id');
+let userPatchTitle = document.querySelector('#patch-title');
+let userPatchRating = document.querySelector('#patch-rating');
+let userPatchGenre = document.querySelector('#patch-genre');
+let userPatchDescription = document.querySelector('#patch-description');
+let userPatchButton = document.querySelector('#patch-button');
+
+userPatchButton.addEventListener('click', async (event)=>{
+    event.preventDefault();
+    let movieToUpdate = await getFavorite(userPatchId.value);
+
+    let update = {
+        title: userPatchTitle.value ? userPatchTitle.value : movieToUpdate.title,
+        genre: userPatchGenre.value ? userPatchGenre.value : movieToUpdate.genre,
+        rating: userPatchRating.value ? userPatchRating.value: movieToUpdate.rating,
+        description: userPatchDescription.value ? userPatchDescription.value: movieToUpdate.description
+    }
+    await patchFavorite(userPatchId.value,update);
+});
