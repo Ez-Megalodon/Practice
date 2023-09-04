@@ -1,59 +1,36 @@
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Solution {
 
+    static int lotteryCoupons(int n) {
+        int[] count = new int[10];
+        int maxCount = 0;
 
-
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static void main(String []argh)
-    {
-
-        Scanner sc = new Scanner(System.in);
-        int t=sc.nextInt();
-
-        for(int i=0;i<t;i++)
-        {
-
-            try
-            {
-                long x=sc.nextLong();
-                System.out.println(x+" can be fitted in:");
-                try{
-                    byte y = (byte) x;
-                    if(y == x)
-                    {
-                        System.out.println("* byte");
-                    }
-                }catch(Exception e){}
-                try{
-                    short y = (short) x;
-                    if(y == x)
-                    {
-                        System.out.println("* short");
-                    }
-                }catch(Exception e){}
-                try{
-                    int y = (int) x;
-                    if(y == x)
-                    {
-                        System.out.println("* int");
-                    }
-                }catch(Exception e){}
-
-                System.out.println("* long");
-            }
-            catch(Exception e)
-            {
-                System.out.println(sc.next()+" can't be fitted anywhere.");
-            }
-
+        for (int i = 1; i <= n; i++) {
+            int sum = getDigitSum(i);
+            count[sum]++;
+            maxCount = Math.max(maxCount, count[sum]);
         }
+
+        int numWinners = 0;
+        for (int i = 0; i < 10; i++) {
+            if (count[i] == maxCount) {
+                numWinners++;
+            }
+        }
+
+        return numWinners;
+    }
+
+    static int getDigitSum(int n) {
+        int sum = 0;
+        while (n != 0) {
+            sum += n % 10;
+            n = n / 10;
+        }
+        return sum;
     }
 }
